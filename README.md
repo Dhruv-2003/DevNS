@@ -16,6 +16,9 @@ The price is calculated on the base of the string length and it is far cheaper t
 So what you are waiting for ?  Go and grab your own DNS .
 You get a NFT too , check it out on opensea and feel free to use your DNS anywhere you want.
 
+
+Upcoming features : UI & UX , Landing / Home page , Attachement of DNS with portfolio or Resume, so you can show it around the world , just with your own DNS . Optimize it for different screen size and mobile page. 
+
 Built with @_buildspace
 
 
