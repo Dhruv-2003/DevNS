@@ -1,5 +1,5 @@
 .App {
-  height: 100vh;
+  height: 110vh;
   background-color: #0d1116;
   text-align: center;
   color: white;
@@ -18,7 +18,7 @@ p {
 }
 
 .header-container {
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 header {
@@ -38,7 +38,7 @@ header {
 
 .title2 {
   margin: 0;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(to right, #f32170,

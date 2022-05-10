@@ -6,6 +6,7 @@ import contractAbi from './utils/contractABI.json';
 import polygonLogo from './assets/polygonlogo.png';
 import ethLogo from './assets/ethlogo.png';
 import { networks } from './utils/networks';
+import LoadingIndicator from './components/LoadingIndicator/index' ;
 
 // Constants
 const TWITTER_HANDLE = 'dhruv_eth';
@@ -24,7 +25,7 @@ const App = () => {
 	const [editing, setEditing] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [mints, setMints] = useState([]);
-	const [minted,setMinted] = useState(false) ;
+	const [loader,setLoader] = useState(false) ;
 
 
 	const connectWallet = async () => {
@@ -122,6 +123,7 @@ const App = () => {
 
 
 	const mintDomain = async () => {
+		setLoader(true)
 		// Don't run if the domain is empty
 		if (!domain) { return }
 		// Alert the user if the domain is too short
@@ -149,6 +151,7 @@ const App = () => {
 				if (receipt.status === 1) {
 					console.log("Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash);
 					alert("Domain minted") ;
+					
 				
 
 					// Set the record for the domain
@@ -164,15 +167,18 @@ const App = () => {
 					}, 2000);
 					setRecord('');
 					setDomain('');
+				
 				}
 				else {
 					alert("Transaction failed! Please try again");
 				}
+
 			}
 		}
 		catch (error) {
 			console.log(error);
 		}
+		setLoader(false) ;
 	};
 
 	const fetchMints = async () => {
@@ -217,6 +223,7 @@ const App = () => {
 	const updateDomain = async () => {
 		if (!record || !domain) { return }
 		setLoading(true);
+		setLoader(true) ;
 		console.log("Updating domain", domain, "with record", record);
 		try {
 			const { ethereum } = window;
@@ -237,6 +244,7 @@ const App = () => {
 			console.log(error);
 		}
 		setLoading(false);
+		setLoader(false) ;
 	}
 
 	// Render methods
@@ -373,15 +381,18 @@ const App = () => {
 					</header>
 				</div>
 
+				{/*If loading is true make loading indicator visible */}
+				{loader && LoadingIndicator()}
+
 				{/* This will hide the connect button if currentAccount isn't empty*/}
 				{!currentAccount && renderNotConnectedContainer()}
 
 				{/* Render the input form if an account is connected */}
 				{currentAccount && renderInputForm()}
+			
 
 				{/* Render mints if the mints array is present here */}
 				{mints && renderMints()}
-
 
 				<div className="footer-container">
 					<img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
